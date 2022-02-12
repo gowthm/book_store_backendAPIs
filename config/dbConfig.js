@@ -4,12 +4,12 @@ const userName = process.env.USERNAME;
 const passWord = process.env.PASSWORD;
 const {Sequelize} = require('sequelize');
 
-// const sequelize = new Sequelize('') // Example for postgres
+const sequelize = new Sequelize('postgres://postgres:'+passWord+'@localhost:5434/'+dbName) // Example for postgres
 
-const sequelize = new Sequelize(dbName, userName, passWord, {
-    host: 'localhost',
-    dialect: 'postgres'
-})
+// const sequelize = new Sequelize(dbName, userName, passWord, {
+//     host: 'localhost',
+//     dialect: 'postgres'
+// })
 
 // autheticate connection
 sequelize.authenticate()
@@ -19,3 +19,5 @@ sequelize.authenticate()
 .catch((err) => {
     console.log('Unable to connect to database')
 })
+
+module.exports = sequelize;
